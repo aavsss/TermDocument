@@ -50,6 +50,7 @@ public class Assignment3{
 			System.out.println("Error: " + e.toString());
 		}
 		
+		printTable(docTerm);
 		
 	}
 	
@@ -90,9 +91,9 @@ public class Assignment3{
 //	              word = word.toLowerCase();
 //	              
 //	              //Punctuation not taken care of
-//	              //Removes !"$#%&'()*+,-./:;<=>?@{}^_`{|}~“”
+//	              //Removes !"$#%&'()*+,-./:;<=>?@{}^_`{|}~ï¿½ï¿½
 //	              word = word.replaceAll("([\\p{Punct}])", "");
-//	              word = word.replace("“", "").replace("”", "");
+//	              word = word.replace("ï¿½", "").replace("ï¿½", "");
 //	              word = word.replace("[", "").replace("]", "");
 //	              word = word.trim();
 //	              
@@ -172,36 +173,45 @@ public class Assignment3{
 	     	return word;
 	  }
 	
-	public void printDocTerm() {
-		for(int i = 0; i < docTerm.length; i++) {
-			System.out.println(Arrays.toString(docTerm[i]));
-		}
-	}
-	
 	/**
 	 * Part 2
-	 * @param args
 	 */
-	public void computeTransposedMatrix() {
+	public void computeCooccurenceMatrx(){
+		computeTransposedMatrix();
+		multiplyMatrices();
+	}
+
+	private void computeTransposedMatrix() {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 100; j++) {
 				docTermTransposed[i][j] = docTerm[j][i];
 			}
 		}
-		printTransposedDocTerm();
+		printTable(docTermTransposed);
 	}
-	
-	//Cause I was lazy to think
-	public void printTransposedDocTerm() {
-		for(int i = 0; i < docTermTransposed.length; i++) {
-			System.out.println(Arrays.toString(docTermTransposed[i]));
+
+	private void multiplyMatrices(){
+		for(int i = 0; i < 100; i++){
+			for(int j = 0; j < 100; j++){
+				for(int k = 0; k < 10; k++){
+					coOccurenceMatrix[i][j] += docTerm[i][k] * docTermTransposed[k][j];
+				}
+			}
+		}
+
+		printTable(coOccurenceMatrix);
+
+	}
+
+	private void printTable(double[][] matrix){
+		for(int i = 0; i < matrix.length; i++){
+			System.out.println(Arrays.toString(matrix[i]));
 		}
 	}
 	
 	public static void main(String[]  args) {
 		Assignment3 documentTermMatrix = new Assignment3();
 		documentTermMatrix.computeDocumentTermMatrix();
-		documentTermMatrix.printDocTerm();
-		documentTermMatrix.computeTransposedMatrix();
+		documentTermMatrix.computeCooccurenceMatrx();
 	}
 }
