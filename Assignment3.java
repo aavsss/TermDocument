@@ -2,7 +2,8 @@
  * @author Aavash Sthapit
  * Class: COSC 4315.001
  * Submitted to: Dr. Leonard Brown
- * Date: 4/03/2020
+ * Date: 4/27/2020
+ * Resubmission changes: Scanner has been used instead of Tokenizer to scan through the words in a file. 
  * Purpose 1:  To display a term-document matrix for a set of input documents. 
  * Feature 1:  Program prompts the user for a folder/directory and read all the
  * 			   files in that folder. 
@@ -44,7 +45,8 @@ public class Assignment3{
 	 * @return sorted list in the form of ArrayList
 	 */
 	private ArrayList<String> putIntoSortedList() {
-		
+		//Pull request
+		System.out.println("Pull Request Demo");
 		listOfWords = new ArrayList<>();
 		
 		try
@@ -128,53 +130,53 @@ public class Assignment3{
 	}
 	
 	  
-		  /**
-		   * Function: Stems the word using Porter Stemming Algorithm
-		   * @param word to be stemmed
-		   * @return stemmed word
-		   */
-		  private String porterStemming(String word) {
-			  
-			  	//Stemming using porter stemmer algorithm provided by Tartarus
-		  	//Instantiating a charSequence with the length of the input
-		  	char[] stemmedWord = new char[word.length()];
-			
-		  	//Adding each character from the input into an array 
-			  	for(int i = 0; i < word.length(); i++) {
-			  		stemmedWord[i] = word.charAt(i);
-			  	}
-		     	Stemmer stemmer = new Stemmer();
-		     	stemmer.add(stemmedWord, stemmedWord.length);
-		     	stemmer.stem();
-		     	word = stemmer.toString();
-		     	return word;
-		  }
-		  
-		  /**
-		   * Function: Removes stop words from the dictionary
-		   * Top 10 most common words in English lexicon are removed: the, be, to, of, and, a, in, that, have, i
-		   * @param string is a stop word or not?
-		   * @return blank string if it is stop word
-		   * 		 else unchanged string
-		   */
-		  public static String removeStopWords(String string) 
-		  { 
+	/**
+	 * Function: Stems the word using Porter Stemming Algorithm
+	 * @param word to be stemmed
+	 * @return stemmed word
+	 */
+	private String porterStemming(String word) {
+		
+		//Stemming using porter stemmer algorithm provided by Tartarus
+		//Instantiating a charSequence with the length of the input
+		char[] stemmedWord = new char[word.length()];
+	
+		//Adding each character from the input into an array 
+		for(int i = 0; i < word.length(); i++) {
+			stemmedWord[i] = word.charAt(i);
+		}
+		Stemmer stemmer = new Stemmer();
+		stemmer.add(stemmedWord, stemmedWord.length);
+		stemmer.stem();
+		word = stemmer.toString();
+		return word;
+	}
+	
+	/**
+	 * Function: Removes stop words from the dictionary
+	 * Top 10 most common words in English lexicon are removed: the, be, to, of, and, a, in, that, have, i
+	 * @param string is a stop word or not?
+	 * @return blank string if it is stop word
+	 * 		 else unchanged string
+	 */
+	public static String removeStopWords(String string) 
+	{ 
 
-			  String[] stopWords = {"the","be","to","of","and","a","in","that","have","i"};
-			  
-			  for(int i = 0; i < stopWords.length; i++) {
-				  
-				  // Check if the word is a stop word. 
-				  //if it is a stop word, assign it to an empty literal value
-			      if (string.equals(stopWords[i])) { 
-			    	  string = "";
-			      } 
-			  }
-		      
-		      // Return blank string if it is stop word 
-			  // else unchanged word
-		      return string; 
-		  } 
+		String[] stopWords = {"the","be","to","of","and","a","in","that","have","i"};
+		
+		for(int i = 0; i < stopWords.length; i++) {
+			
+			// Check if the word is a stop word. 
+			//if it is a stop word, assign it to an empty literal value
+			if (string.equals(stopWords[i])) { 
+				string = "";
+			} 
+		}
+		
+		// Return blank string if it is stop word 
+		// else unchanged word
+		return string; 
+	} 
 		  
 
 	
@@ -183,8 +185,6 @@ public class Assignment3{
 	 * 			 a word from the sorted list to every word in the directory
 	 */
 	public void computeDocumentTermMatrix() {
-		
-		//TODO: Re-do reading from the file
 		
 		//Getting sorted list
 		//Function defined below
@@ -339,6 +339,10 @@ public class Assignment3{
 			System.out.println();
 		}
 			
+	}
+
+	private void forGitTest(){
+		System.out.println("git test");
 	}
 
 	
